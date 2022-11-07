@@ -10,7 +10,6 @@ void Player::Initialize(TextureManager* textre) {
 
 void Player::Update() {
 
-
 	transform.Update();
 }
 
