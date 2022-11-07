@@ -150,6 +150,9 @@
     <ClCompile Include="Math\MatWorld.cpp">
       <Filter>ソース ファイル\Math\Matrix</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Def.h">
@@ -238,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="Math\MatWorld.h">
       <Filter>ヘッダー ファイル\Math\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

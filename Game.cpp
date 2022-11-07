@@ -43,6 +43,8 @@ void Game::Initialize()
 	t3.Initialize({});
 
 	vp.Initialize({});
+
+	player->Initialize(&texM);
 }
 
 void Game::Update()
@@ -51,6 +53,8 @@ void Game::Update()
 	t2.Update();
 	t3.Update();
 	vp.Update();
+
+	player->Update();
 }
 
 void Game::Draw()
@@ -68,6 +72,7 @@ void Game::Draw()
 	// --------- ƒ‚ƒfƒ‹ --------- //
 
 	m1->Draw(t2, vp, plainTex);
+	player->Draw(vp, plainTex);
 
 	// -------------------------- //
 	pplnSet2D.SetDrawCommand();

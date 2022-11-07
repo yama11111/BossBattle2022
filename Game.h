@@ -7,6 +7,7 @@
 #include "Sprite.h"
 #include "Model.h"
 #include <memory>
+#include "Player.h"
 
 class Game
 {
@@ -47,6 +48,9 @@ public:
 
 	// 転送用ビュープロジェクション
 	Math::MatViewProjection vp;
+
+	//仮プレイヤー
+	Player* player;
 
 public:
 	// 初期化
