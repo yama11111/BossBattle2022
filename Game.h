@@ -7,7 +7,6 @@
 #include "Sprite.h"
 #include "Model.h"
 #include <memory>
-#include "Player.h"
 
 class Game
 {
@@ -30,6 +29,10 @@ public:
 	
 	// 無地画像
 	UINT plainTex = 0;
+	// プレイヤー画像
+	UINT playerTex = 0;
+	// エネミー画像
+	UINT enemyTex = 0;
 	
 	// model
 	std::unique_ptr<Object::Model> m1 = nullptr;
@@ -39,18 +42,15 @@ public:
 
 	// ----- オブジェクト ----- //
 
-	// Transform1
-	Object::Transform t1;
-	// Transform2
-	Object::Transform t2;
-	// Transform3
-	Object::Transform t3;
+	// player transform
+	Object::Transform player;
+	// enemy transform
+	Object::Transform enemy;
+	// floor transform
+	std::vector<std::vector<Object::Transform>> floor;
 
 	// 転送用ビュープロジェクション
 	Object::ViewProjection vp;
-
-	//仮プレイヤー
-	Player* player;
 
 public:
 	// 初期化

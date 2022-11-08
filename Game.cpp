@@ -34,27 +34,59 @@ void Game::Initialize()
 	// -------------------- //
 
 	plainTex = texM.Load(L"Resources/white.png", false);
+	playerTex = texM.Load(L"Resources/player.png", false);
+	enemyTex = texM.Load(L"Resources/enemy.png", false);
 
 	m1.reset(new Model());
 	s1.reset(new Sprite({ 64,64 }));
 
-	t1.Initialize({});
-	t2.Initialize({});
-	t3.Initialize({});
+	player.Initialize({});
+	player.scale_ = { 5,5,5 };
+	player.pos_ = { 0,player.scale_.y,0 };
+
+	enemy.Initialize({});
+	enemy.scale_ = { 10,10,10 };
+	enemy.pos_ = { 0,enemy.scale_.y,20 };
+
+	const size_t s = 8;
+	for (size_t i = 0; i < s; i++)
+	{
+		std::vector<Transform> fs;
+		for (size_t j = 0; j < s; j++)
+		{
+			Transform f;
+			f.Initialize({});
+			f.scale_ = { 20,1,20 };
+			f.pos_ = 
+			{ 
+				((f.scale_.x * 2.0f) * j) - ((s - 1) * (f.scale_.x)),
+				-f.scale_.y,
+				((f.scale_.z * 2.0f) * i) - ((s - 1) * (f.scale_.z))
+			};
+			float c = 1.0f - (((i + j) % 2 == 0) * 0.5f);
+			f.SetColor({ c,c,c,1.0f });
+			fs.push_back(f);
+		}
+		floor.push_back(fs);
+	}
 
 	vp.Initialize({});
-
-	player->Initialize(&texM);
+	vp.eye_ = { 0,60.0f,-100.0f };
 }
 
 void Game::Update()
 {
-	t1.Update();
-	t2.Update();
-	t3.Update();
 	vp.Update();
-
-	player->Update();
+	
+	player.Update();
+	enemy.Update();
+	for (size_t i = 0; i < floor.size(); i++)
+	{
+		for (size_t j = 0; j < floor[i].size(); j++)
+		{
+			floor[i][j].Update();
+		}
+	}
 }
 
 void Game::Draw()
@@ -65,20 +97,23 @@ void Game::Draw()
 	pplnSet2D.SetDrawCommand();
 	// ----- 背景スプライト ----- //
 
-	s1->Draw(t1, plainTex);
-
 	// -------------------------- //
 	pplnSet3D.SetDrawCommand();
 	// --------- モデル --------- //
 
-	m1->Draw(t2, vp, plainTex);
-	player->Draw(vp, plainTex);
+	m1->Draw(player, vp, playerTex);
+	m1->Draw(enemy, vp, enemyTex);
+	for (size_t i = 0; i < floor.size(); i++)
+	{
+		for (size_t j = 0; j < floor[i].size(); j++)
+		{
+			m1->Draw(floor[i][j], vp, plainTex);
+		}
+	}
 
 	// -------------------------- //
 	pplnSet2D.SetDrawCommand();
 	// ----- 前景スプライト ----- //
-
-	s1->Draw(t3, plainTex);
 	
 	// -------------------------- //
 }
