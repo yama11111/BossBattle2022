@@ -16,5 +16,5 @@ public:
 
 	void Initialize(TextureManager* textre);
 	void Update();
-	void Draw(Math::MatViewProjection& vp, const UINT tex);
+	void Draw(ViewProjection& vp, const UINT tex);
 };

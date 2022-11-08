@@ -47,7 +47,7 @@ public:
 	Object::Transform t3;
 
 	// 転送用ビュープロジェクション
-	Math::MatViewProjection vp;
+	Object::ViewProjection vp;
 
 	//仮プレイヤー
 	Player* player;
