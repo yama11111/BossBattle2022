@@ -17,12 +17,12 @@ enum Action
 	Attack,//UŒ‚
 };
 
-enum AttackAction
-{
-	Charge,//—­‚ß
-	Attack,//UŒ‚
-	End,   //I‚í‚è
-};
+//enum AttackAction
+//{
+//	Charge,//—­‚ß
+//	Attack,//UŒ‚
+//	End,   //I‚í‚è
+//};
 
 enum AttackValue
 {
