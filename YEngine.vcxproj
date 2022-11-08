@@ -167,7 +167,6 @@
     <ClCompile Include="Object\Transform.cpp" />
     <ClCompile Include="Object\Sprite.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="ViewProjection.cpp" />
     <ClCompile Include="YWindowsApp.cpp" />
   </ItemGroup>
@@ -196,7 +195,6 @@
     <ClInclude Include="Object\Model.h" />
     <ClInclude Include="Object\Transform.h" />
     <ClInclude Include="Object\Sprite.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="ViewProjection.h" />
     <ClInclude Include="YWindowsApp.h" />
   </ItemGroup>

@@ -129,9 +129,6 @@
     <ClCompile Include="DX\YDirectX.cpp">
       <Filter>ソース ファイル\DX</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Math\Mat4.cpp">
       <Filter>ソース ファイル\Math</Filter>
     </ClCompile>
@@ -211,9 +208,6 @@
     </ClInclude>
     <ClInclude Include="DX\YDirectX.h">
       <Filter>ヘッダー ファイル\DX</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Math\Mat4.h">
       <Filter>ヘッダー ファイル\Math</Filter>
