@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Calc.h"
+#include "Random.h"
 #include "Def.h"
 
 using namespace DX;
@@ -32,6 +33,8 @@ void Game::Initialize()
 	pplnSet2D.Initialize(PipelineSet::Type::SpriteT, rpM.Get());
 	pplnSet3D.Initialize(PipelineSet::Type::ModelT, rpM.Get());
 	// -------------------- //
+
+	Srand();
 
 	plainTex = texM.Load(L"Resources/white.png", false);
 	playerTex = texM.Load(L"Resources/player.png", false);
@@ -70,14 +73,11 @@ void Game::Initialize()
 		floor.push_back(fs);
 	}
 
-	vp.Initialize({});
-	vp.eye_ = { 0,60.0f,-100.0f };
+	camera.Initialize({ { 0,60.0f,-100.0f } });
 }
 
 void Game::Update()
-{
-	vp.Update();
-	
+{	
 	player.Update();
 	enemy.Update();
 	for (size_t i = 0; i < floor.size(); i++)
@@ -87,6 +87,13 @@ void Game::Update()
 			floor[i][j].Update();
 		}
 	}
+
+	if (keys->IsTrigger(DIK_SPACE))
+	{
+		camera.Shaking(3.0f, 0.2f);
+	}
+	camera.Update();
+	vp = camera.GetViewProjection();
 }
 
 void Game::Draw()
