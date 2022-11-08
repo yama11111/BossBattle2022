@@ -10,13 +10,14 @@ private:
 		VisitAS,
 		IntroAS,
 		FadeOutAS,
+		BirdEyeAS,
 		EndAS,
 	};
 private:
 	// カメラ
 	Camera camera_;
 	// イージング用
-	Math::Ease<Math::Vec3> ease;
+	Math::Ease<Math::Vec3> ease_;
 	// 現在StartAnimeScene
 	StartAnimeScene startAS_;
 public:

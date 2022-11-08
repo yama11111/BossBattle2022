@@ -17,7 +17,7 @@ void CameraManager::StaticInitialize(Object::Transform* pPlayer, Object::Transfo
 void CameraManager::Initialize()
 {
 	camera_.Initialize({});
-	//ease.Initialize();
+	ease_.Initialize({}, {}, 0, 0);
 	startAS_ = StartAnimeScene::EndAS;
 }
 
@@ -32,7 +32,6 @@ void CameraManager::SetStartAnimation(const StartAnimeScene& anime)
 
 	if (anime == StartAnimeScene::IntroAS) { return; }
 
-
 	if (anime == StartAnimeScene::VisitAS)
 	{
 		Object::Transform::Status trfmS;
@@ -43,11 +42,18 @@ void CameraManager::SetStartAnimation(const StartAnimeScene& anime)
 	{
 		Math::Vec3 start = camera_.pos_;
 		Math::Vec3 end = { pPlayer_->pos_.x - 20.0f,10.0f,pPlayer_->pos_.z - 25.0f };
-		float power = 4.0f;
+		float power = 2.0f;
 		float increase = 0.01f;
-		ease.Initialize(start, end, power, increase);
+		ease_.Initialize(start, end, power, increase);
 	}
-
+	else if (startAS_ == StartAnimeScene::BirdEyeAS)
+	{
+		Math::Vec3 start = camera_.pos_;
+		Math::Vec3 end = { pPlayer_->pos_.x,50.0f,pPlayer_->pos_.z - 100.0f };
+		float power = 2.0f;
+		float increase = 0.01f;
+		ease_.Initialize(start, end, power, increase);
+	}
 }
 
 void CameraManager::UpdateStartAnimation()
@@ -56,9 +62,6 @@ void CameraManager::UpdateStartAnimation()
 
 	if (startAS_ == StartAnimeScene::VisitAS)
 	{
-		Math::Vec3 velocity = pEnemy_->pos_;
-		velocity -= camera_.pos_;
-		camera_.rota_ = Math::AdjustAngle(velocity);
 		if (pEnemy_->pos_.y == pEnemy_->scale_.y)
 		{
 			SetStartAnimation(StartAnimeScene::IntroAS);
@@ -74,9 +77,25 @@ void CameraManager::UpdateStartAnimation()
 	}
 	else if (startAS_ == StartAnimeScene::FadeOutAS)
 	{
-		ease.Update(true);
-		camera_.pos_ = ease.In();
+		ease_.Update(true);
+		camera_.pos_ = ease_.Out();
+		if (ease_.IsEnd())
+		{
+			SetStartAnimation(StartAnimeScene::BirdEyeAS);
+		}
 	}
+	else if (startAS_ == StartAnimeScene::BirdEyeAS)
+	{
+		ease_.Update(true);
+		camera_.pos_ = ease_.In();
+		if (ease_.IsEnd())
+		{
+			SetStartAnimation(StartAnimeScene::EndAS);
+		}
+	}
+	Math::Vec3 velocity = pEnemy_->pos_;
+	velocity -= camera_.pos_;
+	camera_.rota_ = Math::AdjustAngle(velocity);
 }
 
 void CameraManager::Update()

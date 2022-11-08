@@ -24,15 +24,6 @@ namespace Math
 		virtual void Update(const bool isEase);
 		T In();
 		T Out();
+		bool IsEnd() { return ratio_ == 1.0f; }
 	};
-
-	//template <typename T>
-	//class Ease2 : public Ease<T>
-	//{
-	//private:
-	//	float decrease_ = 0.0f;
-	//public:
-	//	void Initialize(const T& start, const T& end, const float power, const float increase, const float decrease);
-	//	void Update(const bool isEase) override;
-	//};
 }

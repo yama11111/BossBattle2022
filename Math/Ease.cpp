@@ -117,42 +117,8 @@ Vec3 Ease<Vec3>::Out()
 	);
 }
 
-//template<typename T>
-//void Ease2<T>::Initialize(const T& start, const T& end, const float power, const float increase, const float decrease)
-//{
-//	ratio_ = 0.0f;
-//
-//	start_ = start;
-//	end_ = end;
-//	power_ = power;
-//
-//	increase_ = increase;
-//	decrease_ = decrease;
-//}
-//
-//template<typename T>
-//void Ease2<T>::Update(const bool isEase)
-//{
-//	if (isEase)
-//	{
-//		ratio_ += increase_;
-//		if (ratio_ >= 1.0f) ratio_ = 1.0f;
-//	}
-//	else
-//	{
-//		ratio_ -= decrease_;
-//		if (ratio_ <= 0.0f) ratio_ = 0.0f;
-//	}
-//}
-
 template class Ease<int>;
 template class Ease<float>;
 template class Ease<double>;
 template class Ease<Vec2>;
 template class Ease<Vec3>;
-
-//template class Ease2<int>;
-//template class Ease2<float>;
-//template class Ease2<double>;
-//template class Ease2<Vec2>;
-//template class Ease2<Vec3>;
