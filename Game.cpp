@@ -2,6 +2,7 @@
 #include "Calc.h"
 #include "Random.h"
 #include "Def.h"
+#include "Ease.h"
 
 using namespace DX;
 using namespace Input;
@@ -49,7 +50,9 @@ void Game::Initialize()
 
 	enemy.Initialize({});
 	enemy.scale_ = { 10,10,10 };
-	enemy.pos_ = { 0,enemy.scale_.y,20 };
+	enemy.pos_ = { 0,enemy.scale_.y,60 };
+
+	heightE.Initialize({ enemy.scale_.y + 200, enemy.scale_.y, 3.0f, 0.01f });
 
 	const size_t s = 8;
 	for (size_t i = 0; i < s; i++)
@@ -73,13 +76,19 @@ void Game::Initialize()
 		floor.push_back(fs);
 	}
 
-	camera.Initialize({ { 0,60.0f,-100.0f } });
+	CameraManager::StaticInitialize(&player, &enemy);
+	cameraM.Initialize();
+	cameraM.ActStartAnimation();
 }
 
 void Game::Update()
 {	
 	player.Update();
+
+	heightE.Update(true);
+	enemy.pos_.y = heightE.In();
 	enemy.Update();
+
 	for (size_t i = 0; i < floor.size(); i++)
 	{
 		for (size_t j = 0; j < floor[i].size(); j++)
@@ -88,12 +97,15 @@ void Game::Update()
 		}
 	}
 
-	if (keys->IsTrigger(DIK_SPACE))
+	if (keys->IsTrigger(DIK_1)) 
 	{
-		camera.Shaking(3.0f, 0.2f);
+		heightE.Reset();
+		enemy.pos_.y = heightE.In();
+		cameraM.ActStartAnimation(); 
 	}
-	camera.Update();
-	vp = camera.GetViewProjection();
+
+	cameraM.Update();
+	vp = cameraM.GetViewProjection();
 }
 
 void Game::Draw()

@@ -5,6 +5,11 @@
 
 class Camera
 {
+public:
+	// 位置
+	Math::Vec3 pos_;
+	// 回転
+	Math::Vec3 rota_;
 private:
 	// トランスフォーム
 	Object::Transform trfm_;
@@ -15,6 +20,8 @@ private:
 public:
 	// 初期化
 	void Initialize(Object::Transform::Status state);
+	// 初期化(カメラシェイク以外)
+	void SetStatus(Object::Transform::Status state);
 	// カメラシェイク
 	void Shaking(const float swing, const float dekey);
 	// trfm → vp
@@ -22,9 +29,7 @@ public:
 public:
 	// ビュープロジェクション
 	Object::ViewProjection GetViewProjection();
-	// 位置設定
-	void SetPos(const Math::Vec3& pos) { trfm_.pos_ = pos; };
-	// 回転設定
-	void SetRota(const Math::Vec3& rota) { trfm_.rota_ = rota; };
+	// 揺れているか
+	bool IsShake() { return shake_.IsShake(); }
 };
 

@@ -3,6 +3,14 @@
 
 void Camera::Initialize(Object::Transform::Status state)
 {
+	shake_.Initialize();
+	SetStatus(state);
+}
+
+void Camera::SetStatus(Object::Transform::Status state)
+{
+	pos_ = state.pos_;
+	rota_ = state.rota_;
 	trfm_.Initialize(state);
 	vp_.Initialize({});
 	Update();
@@ -15,6 +23,9 @@ void Camera::Shaking(const float swing, const float dekey)
 
 void Camera::Update()
 {
+	trfm_.pos_ = pos_;
+	trfm_.rota_ = rota_;
+
 	trfm_.Update();
 	shake_.Update();
 

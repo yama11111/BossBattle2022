@@ -27,6 +27,7 @@ namespace Math
 		};
 	public:
 		void Initialize(const Status& state);
+		void Reset() { ratio_ = 0.0f; }
 		virtual void Update(const bool isEase);
 		float In();
 		float Out();

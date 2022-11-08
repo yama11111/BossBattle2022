@@ -6,7 +6,7 @@
 #include "RootParameterManager.h"
 #include "Sprite.h"
 #include "Model.h"
-#include "Camera.h"
+#include "CameraManager.h"
 #include <memory>
 
 class Game
@@ -50,8 +50,10 @@ public:
 	// floor transform
 	std::vector<std::vector<Object::Transform>> floor;
 	
+	Math::Ease heightE;
+
 	// camera
-	Camera camera;
+	CameraManager cameraM;
 
 	// 転送用ビュープロジェクション
 	Object::ViewProjection vp;
