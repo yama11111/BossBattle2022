@@ -52,7 +52,7 @@ void Game::Initialize()
 	enemy.scale_ = { 10,10,10 };
 	enemy.pos_ = { 0,enemy.scale_.y,60 };
 
-	heightE.Initialize({ enemy.scale_.y + 200, enemy.scale_.y, 3.0f, 0.01f });
+	heightE.Initialize(enemy.scale_.y + 200, enemy.scale_.y, 3.0f, 0.01f);
 
 	const size_t s = 8;
 	for (size_t i = 0; i < s; i++)

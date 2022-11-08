@@ -50,7 +50,7 @@ public:
 	// floor transform
 	std::vector<std::vector<Object::Transform>> floor;
 	
-	Math::Ease heightE;
+	Math::Ease<float> heightE;
 
 	// camera
 	CameraManager cameraM;

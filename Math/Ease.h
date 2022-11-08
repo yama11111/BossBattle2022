@@ -9,41 +9,30 @@ namespace Math
 	float EaseIn(const float start, const float end, const float time, const float power);
 	float EaseOut(const float start, const float end, const float time, const float power);
 
+	template<typename T>
 	class Ease
 	{
 	protected:
 		float ratio_ = 0.0f;
-		float start_ = 0.0f;
-		float end_ = 0.0f;
+		T start_;
+		T end_;
 		float power_ = 0.0f;
 		float increase_ = 0.0f;
 	public:
-		struct Status
-		{
-			float start_ = 0.0f;
-			float end_ = 0.0f;
-			float power_ = 0.0f;
-			float increase_ = 0.0f;
-		};
-	public:
-		void Initialize(const Status& state);
+		void Initialize(const T& start, const T& end, const float power, const float increase);
 		void Reset() { ratio_ = 0.0f; }
 		virtual void Update(const bool isEase);
-		float In();
-		float Out();
+		T In();
+		T Out();
 	};
 
-	class Ease2 : public Ease
-	{
-	private:
-		float decrease_ = 0.0f;
-	public:
-		struct Status2 : public Status
-		{
-			float decrease_ = 0.0f;
-		};
-	public:
-		void Initialize(const Status2& state);
-		void Update(const bool isEase) override;
-	};
+	//template <typename T>
+	//class Ease2 : public Ease<T>
+	//{
+	//private:
+	//	float decrease_ = 0.0f;
+	//public:
+	//	void Initialize(const T& start, const T& end, const float power, const float increase, const float decrease);
+	//	void Update(const bool isEase) override;
+	//};
 }

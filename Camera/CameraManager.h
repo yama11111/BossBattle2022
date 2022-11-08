@@ -16,7 +16,7 @@ private:
 	// カメラ
 	Camera camera_;
 	// イージング用
-	Math::Ease ease;
+	Math::Ease<Math::Vec3> ease;
 	// 現在StartAnimeScene
 	StartAnimeScene startAS_;
 public:

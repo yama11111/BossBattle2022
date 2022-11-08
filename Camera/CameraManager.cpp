@@ -17,7 +17,7 @@ void CameraManager::StaticInitialize(Object::Transform* pPlayer, Object::Transfo
 void CameraManager::Initialize()
 {
 	camera_.Initialize({});
-	ease.Initialize({});
+	//ease.Initialize();
 	startAS_ = StartAnimeScene::EndAS;
 }
 
@@ -31,21 +31,23 @@ void CameraManager::SetStartAnimation(const StartAnimeScene& anime)
 	startAS_ = anime;
 
 	if (anime == StartAnimeScene::IntroAS) { return; }
-	if (anime == StartAnimeScene::FadeOutAS) { return; }
 
-	Object::Transform::Status trfmS;
-	Math::Ease::Status easeS;
 
 	if (anime == StartAnimeScene::VisitAS)
 	{
+		Object::Transform::Status trfmS;
 		trfmS.pos_ = { pEnemy_->pos_.x - 20.0f,10.0f,pEnemy_->pos_.z - 45.0f };
-		Math::Vec3 velocity = pEnemy_->pos_;
-		velocity -= trfmS.pos_;
-		trfmS.rota_ = Math::AdjustAngle(velocity);
+		camera_.Initialize({trfmS});
+	}
+	else if(anime == StartAnimeScene::FadeOutAS)
+	{
+		Math::Vec3 start = camera_.pos_;
+		Math::Vec3 end = { pPlayer_->pos_.x - 20.0f,10.0f,pPlayer_->pos_.z - 25.0f };
+		float power = 4.0f;
+		float increase = 0.01f;
+		ease.Initialize(start, end, power, increase);
 	}
 
-	camera_.Initialize(trfmS);
-	ease.Initialize(easeS);
 }
 
 void CameraManager::UpdateStartAnimation()
@@ -73,6 +75,7 @@ void CameraManager::UpdateStartAnimation()
 	else if (startAS_ == StartAnimeScene::FadeOutAS)
 	{
 		ease.Update(true);
+		camera_.pos_ = ease.In();
 	}
 }
 
