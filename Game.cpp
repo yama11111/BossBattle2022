@@ -33,7 +33,7 @@ void Game::Initialize()
 	pplnSet3D.Initialize(PipelineSet::Type::ModelT, rpM.Get());
 	// -------------------- //
 
-	plainTex = texM.Load(L"Resources/white.png", false);
+	plainTex = texM.Load(L"Resources/Player.png", false);
 
 	m1.reset(new Model());
 	s1.reset(new Sprite({ 64,64 }));
@@ -44,7 +44,7 @@ void Game::Initialize()
 
 	vp.Initialize({});
 
-	player->Initialize(&texM);
+	player.Initialize(m1.get());
 }
 
 void Game::Update()
@@ -54,7 +54,7 @@ void Game::Update()
 	t3.Update();
 	vp.Update();
 
-	player->Update();
+	player.Update();
 }
 
 void Game::Draw()
@@ -71,8 +71,8 @@ void Game::Draw()
 	pplnSet3D.SetDrawCommand();
 	// --------- ƒ‚ƒfƒ‹ --------- //
 
-	m1->Draw(t2, vp, plainTex);
-	player->Draw(vp, plainTex);
+	//m1->Draw(t2, vp, plainTex);
+	player.Draw(vp, plainTex);
 
 	// -------------------------- //
 	pplnSet2D.SetDrawCommand();

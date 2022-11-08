@@ -50,7 +50,7 @@ public:
 	Object::ViewProjection vp;
 
 	//‰¼ƒvƒŒƒCƒ„[
-	Player* player;
+	Player player;
 
 public:
 	// ‰Šú‰»

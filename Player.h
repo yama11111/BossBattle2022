@@ -9,12 +9,11 @@ using namespace Object;
 
 class Player {
 public:
-	Model model;
+	Model* model;
 	Transform transform;
-	TextureManager* t;
 	//Keys key;
 
-	void Initialize(TextureManager* textre);
+	void Initialize(Model* model);
 	void Update();
 	void Draw(ViewProjection& vp, const UINT tex);
 };
