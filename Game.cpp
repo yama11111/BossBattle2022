@@ -47,6 +47,7 @@ void Game::Initialize()
 	vp.Initialize({});
 
 	player.Initialize(m1.get());
+	enemy.Initialize(m1.get());
 }
 
 void Game::Update()
@@ -57,6 +58,7 @@ void Game::Update()
 	vp.Update();
 
 	player.Update();
+	enemy.Update();
 }
 
 void Game::Draw()
@@ -75,6 +77,7 @@ void Game::Draw()
 
 	//m1->Draw(t2, vp, plainTex);
 	player.Draw(vp, playerTex);
+	enemy.Draw(vp, enemyTex);
 
 	// -------------------------- //
 	pplnSet2D.SetDrawCommand();

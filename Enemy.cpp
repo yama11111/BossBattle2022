@@ -1,6 +1,6 @@
-#include "Player.h"
+#include "Enemy.h"
 
-Vec3 Player::GetWorldPosition() {
+Vec3 Enemy::GetWorldPosition() {
 	Vec3 worldPos;
 
 	worldPos.x = transform.pos_.x;
@@ -10,26 +10,28 @@ Vec3 Player::GetWorldPosition() {
 	return worldPos;
 }
 
-void Player::Initialize(Model* model) {
+void Enemy::Initialize(Model* model) {
 
 	this->model = model;
 
 	Vec4 color = { 1.0f,1.0f,1.0f,1.0f };
 
-	key = Keys::GetInstance();
+	//key = Keys::GetInstance();
 
 	transform.Initialize({ });
 	attack.Initialize({ });
 
+	transform.pos_.x = 10.0f;
+
 	jumpCount = 0;
 }
 
-void Player::Update() {
+void Enemy::Update() {
 
 	//スピード
 	const float speed = 0.3f;
 
-	if (key->IsDown(DIK_W)) {
+	/*if (key->IsDown(DIK_W)) {
 		transform.pos_.z += speed;
 	};
 	if (key->IsDown(DIK_S)) {
@@ -48,7 +50,7 @@ void Player::Update() {
 	};
 	if (key->IsDown(DIK_Q)) {
 		transform.pos_.y -= speed;
-	};
+	};*/
 
 	//ジャンプ
 	Jump();
@@ -61,18 +63,18 @@ void Player::Update() {
 	transform.pos_.z = max(transform.pos_.z, -kMoveLimitZ);
 	transform.pos_.z = min(transform.pos_.z, +kMoveLimitZ);
 
-	key->Update();
+	//key->Update();
 	transform.Update();
 }
 
-void Player::Draw(ViewProjection& vp, const UINT tex) {
+void Enemy::Draw(ViewProjection& vp, const UINT tex) {
 	model->Draw(transform, vp, tex);
 }
 
-void Player::Jump() {
-	if (key->IsTrigger(DIK_Z)) {
+void Enemy::Jump() {
+	/*if (key->IsTrigger(DIK_Z)) {
 
-		if (transform.pos_.y < -kMoveLimitY+1) {
+		if (transform.pos_.y < -kMoveLimitY + 1) {
 
 			Gravity = 0;
 
@@ -80,7 +82,7 @@ void Player::Jump() {
 
 			jumpCount = 0;
 		}
-	}
+	}*/
 
 	//ジャンプ
 	if (Gravity < MaxGravity) {
@@ -97,10 +99,10 @@ void Player::Jump() {
 	}
 }
 
-void Player::Atack() {
+void Enemy::Atack() {
 
 }
 
-void Player::Avoidance() {
+void Enemy::Avoidance() {
 
 }

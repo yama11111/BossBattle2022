@@ -7,12 +7,11 @@ using namespace Input;
 using namespace Math;
 using namespace Object;
 
-class Player {
+class Enemy {
 public:
 	Model* model;
 	Transform transform;
 	Transform attack;
-	Keys* key;
 
 	void Initialize(Model* model);
 	void Update();

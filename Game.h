@@ -8,6 +8,7 @@
 #include "Model.h"
 #include <memory>
 #include "Player.h"
+#include "Enemy.h"
 
 class Game
 {
@@ -53,6 +54,9 @@ public:
 
 	//仮プレイヤー
 	Player player;
+
+	//仮エネミー
+	Enemy enemy;
 
 public:
 	// 初期化
