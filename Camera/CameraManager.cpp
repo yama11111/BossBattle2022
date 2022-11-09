@@ -130,7 +130,7 @@ void CameraManager::UpdateStartAnimation()
 			SetStartAnimation(StartAnimeScene::EndAS);
 			cameraWork_ = CameraWork::PlayCW;
 
-			Math::Vec3 back = pPlayer_->pos_ - velocityEP_ ;
+			Math::Vec3 back = pPlayer_->pos_ - (velocityEP_ * 100.0f);
 			back.y += 25;
 
 			playE_.Initialize(camera_.pos_, back, 2.0f);
@@ -159,7 +159,7 @@ void CameraManager::PlayMovementUpdate()
 		if (elderPlayerPos_.x != pPlayer_->pos_.x ||
 			elderPlayerPos_.z != pPlayer_->pos_.z)
 		{
-			Math::Vec3 back = pPlayer_->pos_ - velocityEP_;
+			Math::Vec3 back = pPlayer_->pos_ - (velocityEP_ * 100.0f);
 			back.y += 25;
 
 			playE_.Initialize(camera_.pos_, back, 2.0f);
@@ -180,7 +180,7 @@ void CameraManager::PlayMovementUpdate()
 void CameraManager::Update()
 {
 	velocityEP_ = pEnemy_->pos_ - pPlayer_->pos_;
-	velocityEP_.Normalized();
+	velocityEP_ = velocityEP_.Normalized();
 
 	if (cameraWork_ == CameraWork::StartCW)
 	{
@@ -200,4 +200,9 @@ void CameraManager::Update()
 Object::ViewProjection CameraManager::GetViewProjection()
 {
 	return camera_.GetViewProjection();
+}
+
+Math::Vec3 CameraManager::CameraVelocity()
+{
+	return camera_.Verocity();
 }

@@ -49,7 +49,6 @@ private:
 	// プレイ時動作用タイマー
 	Math::Timer playT_;
 
-
 	Math::Vec3 elderPlayerPos_;
 	Math::Vec3 velocityEP_;
 public:
@@ -62,6 +61,8 @@ public:
 public:
 	// ビュープロジェクション
 	Object::ViewProjection GetViewProjection();
+	// カメラ向き
+	Math::Vec3 CameraVelocity();
 public:
 	// 開始演出
 	void ActStartAnimation() { SetStartAnimation(StartAnimeScene::VisitAS); }
