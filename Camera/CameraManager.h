@@ -5,6 +5,13 @@
 class CameraManager
 {
 private:
+	enum class CameraWork
+	{ 
+		StartCW,
+		PlayCW,
+		BossAttackCW,
+		ClearCW,
+	};
 	enum class StartAnimeScene 
 	{
 		VisitAS,
@@ -13,13 +20,29 @@ private:
 		BirdEyeAS,
 		EndAS,
 	};
+	enum class PlayMovement
+	{
+		AdulationM,
+		LookingM,
+	};
 private:
 	// カメラ
 	Camera camera_;
-	// イージング用
-	Math::Ease<Math::Vec3> ease_;
+	// 現在CameraWork
+	CameraWork cameraWork_;
 	// 現在StartAnimeScene
 	StartAnimeScene startAS_;
+	// イージング用
+	Math::Ease<Math::Vec3> startEase_;
+	// 現在PlayMovement
+	PlayMovement playM_;
+	// イージング用
+	Math::Ease<Math::Vec3> playEase_;
+
+	
+	Math::Vec3 vel;
+
+	Math::Vec3 elderPlayerPos_;
 public:
 	// 初期化
 	void Initialize();
@@ -36,6 +59,8 @@ private:
 	// StartAnime
 	void SetStartAnimation(const StartAnimeScene& anime);
 	void UpdateStartAnimation();
+	// PlayMovement
+	void PlayMovementUpdate();
 public:
 	static Object::Transform* pPlayer_;
 	static Object::Transform* pEnemy_;

@@ -82,7 +82,17 @@ void Game::Initialize()
 }
 
 void Game::Update()
-{	
+{
+	const float Speed = 1.0f;
+	player.pos_.x += Speed * keys->Horizontal();
+	player.pos_.z -= Speed * keys->Vertical();
+
+	if (keys->IsMove())
+	{
+		Vec3 velocity = { (float)keys->Horizontal(), 0, (float)keys->Vertical() };
+		player.rota_ = AdjustAngle(velocity);
+	}
+
 	player.Update();
 
 	heightE.Update(true);
@@ -101,6 +111,7 @@ void Game::Update()
 	{
 		heightE.Reset();
 		enemy.pos_.y = heightE.In();
+		player.pos_ = { 0,player.scale_.y,0 };
 		cameraM.ActStartAnimation(); 
 	}
 

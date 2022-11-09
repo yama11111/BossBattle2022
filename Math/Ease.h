@@ -25,5 +25,6 @@ namespace Math
 		T In();
 		T Out();
 		bool IsEnd() { return ratio_ == 1.0f; }
+		void SetEnd(const T& end) { end_ = end; }
 	};
 }
