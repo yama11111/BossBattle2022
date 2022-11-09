@@ -143,8 +143,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera\Camera.cpp" />
-    <ClCompile Include="Camera\CameraManager.cpp" />
     <ClCompile Include="DX\ConstBufferManager.cpp" />
     <ClCompile Include="DX\GPUResource.cpp" />
     <ClCompile Include="DX\PipelineSet.cpp" />
@@ -164,8 +162,6 @@
     <ClCompile Include="Input\Pad.cpp" />
     <ClCompile Include="Math\Calc.cpp" />
     <ClCompile Include="Math\Mat4.cpp" />
-    <ClCompile Include="Math\Random.cpp" />
-    <ClCompile Include="Math\Shake.cpp" />
     <ClCompile Include="Math\Vec2.cpp" />
     <ClCompile Include="Math\Vec3.cpp" />
     <ClCompile Include="Math\Vec4.cpp" />
@@ -178,8 +174,6 @@
     <ClCompile Include="YWindowsApp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera\Camera.h" />
-    <ClInclude Include="Camera\CameraManager.h" />
     <ClInclude Include="Def.h" />
     <ClInclude Include="DX\ConstBufferManager.h" />
     <ClInclude Include="DX\GPUResource.h" />
@@ -200,8 +194,6 @@
     <ClInclude Include="Input\Pad.h" />
     <ClInclude Include="Math\Calc.h" />
     <ClInclude Include="Math\Mat4.h" />
-    <ClInclude Include="Math\Random.h" />
-    <ClInclude Include="Math\Shake.h" />
     <ClInclude Include="Math\Vec2.h" />
     <ClInclude Include="Math\Vec3.h" />
     <ClInclude Include="Math\Vec4.h" />
