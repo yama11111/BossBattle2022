@@ -55,6 +55,12 @@
     <Filter Include="ソース ファイル\Object\3D">
       <UniqueIdentifier>{cc53a894-e477-400e-82e1-5aea749c9514}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Camera">
+      <UniqueIdentifier>{2b0bbebc-bc0f-4589-b777-00da9e87c04b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Camera">
+      <UniqueIdentifier>{b0d66cf7-a06b-4278-ac12-8a7b3c63708c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -150,6 +156,12 @@
     <ClCompile Include="Math\Random.cpp">
       <Filter>ソース ファイル\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Camera\Camera.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\CameraManager.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Def.h">
@@ -244,6 +256,12 @@
     </ClInclude>
     <ClInclude Include="Math\Shake.h">
       <Filter>ヘッダー ファイル\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\Camera.h">
+      <Filter>ヘッダー ファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\CameraManager.h">
+      <Filter>ヘッダー ファイル\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
