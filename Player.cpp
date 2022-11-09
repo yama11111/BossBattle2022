@@ -55,6 +55,10 @@ void Player::Update() {
 	////”ÍˆÍ‚ð’´‚¦‚È‚¢ˆ—
 	transform.pos_.y = max(transform.pos_.y, -kMoveLimitY);
 	transform.pos_.y = min(transform.pos_.y, +kMoveLimitY);
+	transform.pos_.x = max(transform.pos_.x, -kMoveLimitX);
+	transform.pos_.x = min(transform.pos_.x, +kMoveLimitX);
+	transform.pos_.z = max(transform.pos_.z, -kMoveLimitZ);
+	transform.pos_.z = min(transform.pos_.z, +kMoveLimitZ);
 
 	key->Update();
 	transform.Update();
