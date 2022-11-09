@@ -51,6 +51,7 @@ public:
 	std::vector<std::vector<Object::Transform>> floor;
 	
 	Math::Ease<float> heightE;
+	Math::Timer heightT;
 
 	// camera
 	CameraManager cameraM;

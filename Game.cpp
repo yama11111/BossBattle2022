@@ -52,7 +52,9 @@ void Game::Initialize()
 	enemy.scale_ = { 10,10,10 };
 	enemy.pos_ = { 0,enemy.scale_.y,60 };
 
-	heightE.Initialize(enemy.scale_.y + 200, enemy.scale_.y, 3.0f, 0.01f);
+	heightE.Initialize(enemy.scale_.y + 200, enemy.scale_.y, 3.0f);
+	heightT.Initialize(100);
+	heightT.SetActive(true);
 
 	const size_t s = 8;
 	for (size_t i = 0; i < s; i++)
@@ -95,8 +97,8 @@ void Game::Update()
 
 	player.Update();
 
-	heightE.Update(true);
-	enemy.pos_.y = heightE.In();
+	heightT.Update();
+	enemy.pos_.y = heightE.In(heightT.Ratio());
 	enemy.Update();
 
 	for (size_t i = 0; i < floor.size(); i++)
@@ -109,8 +111,8 @@ void Game::Update()
 
 	if (keys->IsTrigger(DIK_1)) 
 	{
-		heightE.Reset();
-		enemy.pos_.y = heightE.In();
+		heightT.Reset(true);
+		enemy.pos_.y = heightE.In(heightT.Ratio());
 		player.pos_ = { 0,player.scale_.y,0 };
 		cameraM.ActStartAnimation(); 
 	}
