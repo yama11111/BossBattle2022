@@ -1,8 +1,8 @@
 #pragma once
+#include <cassert>
 #include <random>
 
 #include "Model.h"
-#include "Vec3.h"
 
 #include "Player.h"
 
@@ -17,12 +17,13 @@ enum Action
 	Attack,//攻撃
 };
 
-//enum AttackAction
-//{
-//	Charge,//溜め
-//	Attack,//攻撃
-//	End,   //終わり
-//};
+enum AttackAction
+{
+	NonePhase,
+	AttackPhase,//攻撃
+	ChargePhase,//溜め
+	EndPhase,   //終わり
+};
 
 enum AttackValue
 {
@@ -35,8 +36,9 @@ enum AttackValue
 class Boss
 {
 private:
-	Model model;
-	Transform trasform;
+	Model* model = nullptr;
+	Transform transform;
+	TextureManager* texture = nullptr;
 
 	Vec3 distance = {};
 
@@ -44,13 +46,13 @@ private:
 
 	//敵の行動パターン用変数
 	int action = Action::Move;
-
+	int attackAction = AttackAction::NonePhase;
 public:
 	
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	void Initalize();
+	void Initalize(Model*model);
 
 	/// <summary>
 	/// 更新
@@ -71,6 +73,12 @@ public:
 	/// 攻撃
 	/// </summary>
 	void Attack();
+
+	/// <summary>
+	/// posのゲッター
+	/// </summary>
+	/// <returns></returns>
+	Vec3 GetWorldPosition();
 
 };
 
