@@ -25,7 +25,7 @@ private:
 	float MaxGravity = 1.0f;
 
 	float jump = 0;
-	float Maxjump = 2.5;
+	float Maxjump = 3.0f;
 	int jumpCount = 0;
 
 	bool AttackF = false;

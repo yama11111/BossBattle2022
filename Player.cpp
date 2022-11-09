@@ -104,7 +104,7 @@ void Player::Jump() {
 
 		jumpCount++;
 
-		jump -= 0.1f * jumpCount;
+		jump -= 0.1f + ( 0.01f * jumpCount);
 	}
 	else {
 		transform.pos_.y -= Gravity;

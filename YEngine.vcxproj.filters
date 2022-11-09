@@ -1,75 +1,286 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <FxCompile Include="Resources\Shaders\ModelPS.hlsl" />
-    <FxCompile Include="Resources\Shaders\ModelVS.hlsl" />
-    <FxCompile Include="Resources\Shaders\SpritePS.hlsl" />
-    <FxCompile Include="Resources\Shaders\SpriteVS.hlsl" />
+    <FxCompile Include="Resources\Shaders\ModelPS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\SpritePS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\SpriteVS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shaders\ModelVS.hlsl">
+      <Filter>シェーダーファイル</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DX\ConstBufferManager.cpp" />
-    <ClCompile Include="DX\GPUResource.cpp" />
-    <ClCompile Include="DX\PipelineSet.cpp" />
-    <ClCompile Include="DX\RootParameterManager.cpp" />
-    <ClCompile Include="DX\ScreenDesc.cpp" />
-    <ClCompile Include="DX\ShaderSet.cpp" />
-    <ClCompile Include="DX\TextureManager.cpp" />
-    <ClCompile Include="DX\Vertices.cpp" />
-    <ClCompile Include="DX\YAssert.cpp" />
-    <ClCompile Include="DX\YDirectX.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="EnemyAttack.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Input\InputManager.cpp" />
-    <ClCompile Include="Input\Keys.cpp" />
-    <ClCompile Include="Input\Mouse.cpp" />
-    <ClCompile Include="Input\Pad.cpp" />
-    <ClCompile Include="Math\Calc.cpp" />
-    <ClCompile Include="Math\Mat4.cpp" />
-    <ClCompile Include="Math\Vec2.cpp" />
-    <ClCompile Include="Math\Vec3.cpp" />
-    <ClCompile Include="Math\Vec4.cpp" />
-    <ClCompile Include="Object\Model.cpp" />
-    <ClCompile Include="Object\Transform.cpp" />
-    <ClCompile Include="Object\Sprite.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="ViewProjection.cpp" />
-    <ClCompile Include="YWindowsApp.cpp" />
+    <ClCompile Include="Game.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewProjection.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="YWindowsApp.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="DX\ConstBufferManager.cpp">
+      <Filter>ソースファイル\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="DX\GPUResource.cpp">
+      <Filter>ソースファイル\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="DX\PipelineSet.cpp">
+      <Filter>ソースファイル\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="DX\ScreenDesc.cpp">
+      <Filter>ソースファイル\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="DX\RootParameterManager.cpp">
+      <Filter>ソースファイル\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="DX\ShaderSet.cpp">
+      <Filter>ソースファイル\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="DX\TextureManager.cpp">
+      <Filter>ソースファイル\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="DX\Vertices.cpp">
+      <Filter>ソースファイル\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="DX\YAssert.cpp">
+      <Filter>ソースファイル\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="DX\YDirectX.cpp">
+      <Filter>ソースファイル\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Keys.cpp">
+      <Filter>ソースファイル\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\InputManager.cpp">
+      <Filter>ソースファイル\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Mouse.cpp">
+      <Filter>ソースファイル\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Pad.cpp">
+      <Filter>ソースファイル\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Calc.cpp">
+      <Filter>ソースファイル\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Mat4.cpp">
+      <Filter>ソースファイル\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vec4.cpp">
+      <Filter>ソースファイル\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vec3.cpp">
+      <Filter>ソースファイル\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vec2.cpp">
+      <Filter>ソースファイル\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Transform.cpp">
+      <Filter>ソースファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Sprite.cpp">
+      <Filter>ソースファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Model.cpp">
+      <Filter>ソースファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソースファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>ソースファイル\Actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyAttack.cpp">
+      <Filter>ソースファイル\Actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Ease.cpp">
+      <Filter>ソースファイル\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Random.cpp">
+      <Filter>ソースファイル\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Shake.cpp">
+      <Filter>ソースファイル\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\Camera.cpp">
+      <Filter>ソースファイル\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\CameraManager.cpp">
+      <Filter>ソースファイル\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Def.h" />
-    <ClInclude Include="DX\ConstBufferManager.h" />
-    <ClInclude Include="DX\GPUResource.h" />
-    <ClInclude Include="DX\PipelineSet.h" />
-    <ClInclude Include="DX\RootParameterManager.h" />
-    <ClInclude Include="DX\ScreenDesc.h" />
-    <ClInclude Include="DX\ShaderSet.h" />
-    <ClInclude Include="DX\TextureManager.h" />
-    <ClInclude Include="DX\Vertices.h" />
-    <ClInclude Include="DX\YAssert.h" />
-    <ClInclude Include="DX\YDirectX.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="EnemyAttack.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Input\InputManager.h" />
-    <ClInclude Include="Input\Keys.h" />
-    <ClInclude Include="Input\Mouse.h" />
-    <ClInclude Include="Input\Pad.h" />
-    <ClInclude Include="Math\Calc.h" />
-    <ClInclude Include="Math\Mat4.h" />
-    <ClInclude Include="Math\Vec2.h" />
-    <ClInclude Include="Math\Vec3.h" />
-    <ClInclude Include="Math\Vec4.h" />
-    <ClInclude Include="Object\Model.h" />
-    <ClInclude Include="Object\Transform.h" />
-    <ClInclude Include="Object\Sprite.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="ViewProjection.h" />
-    <ClInclude Include="YWindowsApp.h" />
+    <ClInclude Include="Def.h">
+      <Filter>ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewProjection.h">
+      <Filter>ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="DX\ConstBufferManager.h">
+      <Filter>ヘッダーファイル\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="DX\GPUResource.h">
+      <Filter>ヘッダーファイル\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="DX\RootParameterManager.h">
+      <Filter>ヘッダーファイル\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="DX\PipelineSet.h">
+      <Filter>ヘッダーファイル\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="DX\YDirectX.h">
+      <Filter>ヘッダーファイル\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="DX\YAssert.h">
+      <Filter>ヘッダーファイル\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="DX\TextureManager.h">
+      <Filter>ヘッダーファイル\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="DX\ScreenDesc.h">
+      <Filter>ヘッダーファイル\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="DX\ShaderSet.h">
+      <Filter>ヘッダーファイル\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Pad.h">
+      <Filter>ヘッダーファイル\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Mouse.h">
+      <Filter>ヘッダーファイル\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputManager.h">
+      <Filter>ヘッダーファイル\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Keys.h">
+      <Filter>ヘッダーファイル\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>ヘッダーファイル\Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyAttack.h">
+      <Filter>ヘッダーファイル\Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ヘッダーファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Transform.h">
+      <Filter>ヘッダーファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Model.h">
+      <Filter>ヘッダーファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Sprite.h">
+      <Filter>ヘッダーファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Calc.h">
+      <Filter>ヘッダーファイル\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vec4.h">
+      <Filter>ヘッダーファイル\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vec3.h">
+      <Filter>ヘッダーファイル\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vec2.h">
+      <Filter>ヘッダーファイル\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Mat4.h">
+      <Filter>ヘッダーファイル\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="YWindowsApp.h">
+      <Filter>ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="DX\Vertices.h">
+      <Filter>ヘッダーファイル\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Ease.h">
+      <Filter>ヘッダーファイル\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Random.h">
+      <Filter>ヘッダーファイル\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Shake.h">
+      <Filter>ヘッダーファイル\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\Camera.h">
+      <Filter>ヘッダーファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\CameraManager.h">
+      <Filter>ヘッダーファイル\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Shaders\Model.hlsli" />
-    <None Include="Resources\Shaders\Sprite.hlsli" />
+    <None Include="Resources\Shaders\Model.hlsli">
+      <Filter>シェーダーファイル</Filter>
+    </None>
+    <None Include="Resources\Shaders\Sprite.hlsli">
+      <Filter>シェーダーファイル</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ソースファイル">
+      <UniqueIdentifier>{01ba5c19-75f1-4ed9-a8b0-07d58bd7c673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\DX">
+      <UniqueIdentifier>{3c92b5cb-d9f7-43fa-8463-f909e20d2ffd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Input">
+      <UniqueIdentifier>{e7979d9f-6e12-4b0e-80f0-1a9a6f2d93d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Math">
+      <UniqueIdentifier>{7bafc9f0-a9c9-4232-943e-0b8b0e29a052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Object">
+      <UniqueIdentifier>{8af16c15-bbd6-4813-8780-01b528174abc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Actor">
+      <UniqueIdentifier>{9fbed43c-b9f1-4bff-a5fa-6910633a63f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Actor\Enemy">
+      <UniqueIdentifier>{1772bd1f-6f4d-4b4d-8e98-a447a8819a4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル">
+      <UniqueIdentifier>{bb4fbe47-648e-41be-85cc-e1fa96e41b3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\DX">
+      <UniqueIdentifier>{020f1ef4-89f4-47e7-9d62-b05e35a930bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="シェーダーファイル">
+      <UniqueIdentifier>{92daebc9-964f-4990-ba47-3068beceb74e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Input">
+      <UniqueIdentifier>{f05f4047-2a37-4af6-9e53-9a781392f9db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Math">
+      <UniqueIdentifier>{b9c57485-472c-4a83-b039-22df0d834968}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Actor">
+      <UniqueIdentifier>{6505763f-bc36-4ca0-be81-74f4454c9480}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Actor\Enemy">
+      <UniqueIdentifier>{31b76029-0dad-4777-8cb7-af9430ac1724}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Object">
+      <UniqueIdentifier>{85ef61be-72f3-4fce-8b19-3289358fdd3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Camera">
+      <UniqueIdentifier>{49def894-4add-4d3a-b206-70f91fd8ad1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Camera">
+      <UniqueIdentifier>{9d1efb5d-84e3-4488-8f63-fceb3908cad9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
