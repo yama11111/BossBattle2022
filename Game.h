@@ -30,6 +30,8 @@ public:
 	
 	// –³’n‰æ‘œ
 	UINT plainTex = 0;
+	UINT playerTex = 0;
+	UINT enemyTex = 0;
 	
 	// model
 	std::unique_ptr<Object::Model> m1 = nullptr;
