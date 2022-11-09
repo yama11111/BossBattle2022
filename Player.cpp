@@ -14,20 +14,27 @@ void Player::Initialize(Model* model) {
 
 	this->model = model;
 
+	Attackmodel = model;
+
 	Vec4 color = { 1.0f,1.0f,1.0f,1.0f };
 
 	key = Keys::GetInstance();
 
 	transform.Initialize({ });
+	transform.scale_ = { 5.0f,5.0f,5.0f };
+
 	attack.Initialize({ });
+	attack.scale_ = { 10.0f,10.0f,10.0f };
 
 	jumpCount = 0;
+
+	AttackF = false;
 }
 
 void Player::Update() {
 
 	//スピード
-	const float speed = 0.3f;
+	const float speed =	2.0f;
 
 	if (key->IsDown(DIK_W)) {
 		transform.pos_.z += speed;
@@ -52,27 +59,32 @@ void Player::Update() {
 
 	//ジャンプ
 	Jump();
+	Attack();
 
 	////範囲を超えない処理
-	transform.pos_.y = max(transform.pos_.y, -kMoveLimitY);
-	transform.pos_.y = min(transform.pos_.y, +kMoveLimitY);
+	transform.pos_.y = min(transform.pos_.y, kMoveLimitY * 3);
+	transform.pos_.y = max(transform.pos_.y, transform.scale_.y);
 	transform.pos_.x = max(transform.pos_.x, -kMoveLimitX);
 	transform.pos_.x = min(transform.pos_.x, +kMoveLimitX);
 	transform.pos_.z = max(transform.pos_.z, -kMoveLimitZ);
 	transform.pos_.z = min(transform.pos_.z, +kMoveLimitZ);
 
-	key->Update();
 	transform.Update();
+	attack.Update();
 }
 
-void Player::Draw(ViewProjection& vp, const UINT tex) {
+void Player::Draw(ViewProjection& vp, const UINT tex, const UINT tex2) {
 	model->Draw(transform, vp, tex);
+
+	if (AttackF == true) {
+		model->Draw(attack, vp, tex2);
+	}
 }
 
 void Player::Jump() {
 	if (key->IsTrigger(DIK_Z)) {
 
-		if (transform.pos_.y < -kMoveLimitY+1) {
+		if (transform.pos_.y < kMoveLimitY + 1) {
 
 			Gravity = 0;
 
@@ -90,15 +102,31 @@ void Player::Jump() {
 	if (jump > 0) {
 		transform.pos_.y += jump;
 
-		jump -= 0.1f;
+		jumpCount++;
+
+		jump -= 0.1f * jumpCount;
 	}
 	else {
 		transform.pos_.y -= Gravity;
 	}
 }
 
-void Player::Atack() {
+void Player::Attack() {
+	if (key->IsTrigger(DIK_SPACE)) {
+		if (AttackF != true) {
 
+			AttackF = true;
+		}
+	}
+
+	if (AttackF == true) {
+		attack.pos_ = transform.pos_;
+		attack.pos_.x += 20;
+	}
+
+	if (key->IsTrigger(DIK_R)) {
+		AttackF = false;
+	}
 }
 
 void Player::Avoidance() {

@@ -1,10 +1,10 @@
 #include "EnemyAttack.h"
 
-EnemyAttack::EnemyAttack(Transform t, Model* model) {
+EnemyAttack::EnemyAttack(Vec3 t, Model* model) {
 
-	transform.Initialize({ });
+	transform.pos_ = t;
 
-	transform = t;
+	speed = 1.0f;
 
 	this->model = model;
 }
@@ -28,8 +28,20 @@ void EnemyAttack::Initialize(Model* model) {
 
 void EnemyAttack::Update() {
 
-	//スピード
-	const float speed = 0.3f;
+	if (transform.pos_.y < 20) {
+		transform.pos_.y++;
+	}else {
+		transform.pos_.z -= speed;
+	}
+
+	speed += 0.05f;
+
+	const float ti = 1.0f;
+	if(transform.pos_.z < -160)
+		transform.scale_ -= {ti, ti, ti};
+
+	if (transform.scale_.x < 0.1f)
+		IsDead = true;
 
 	transform.Update();
 }

@@ -10,7 +10,7 @@ public:
 	Model* model;
 	Transform transform;
 
-	EnemyAttack(Transform t, Model* model);
+	EnemyAttack(Vec3 t, Model* model);
 	//~EnemyAttack();
 	void Initialize(Model* model);
 	void Update();
@@ -20,4 +20,6 @@ public:
 private:
 	void Atack();
 	bool IsDead = false;
+	//スピード
+	float speed = 1.0f;
 };

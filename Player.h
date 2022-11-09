@@ -10,13 +10,14 @@ using namespace Object;
 class Player {
 public:
 	Model* model;
+	Model* Attackmodel;
 	Transform transform;
 	Transform attack;
 	Keys* key;
 
 	void Initialize(Model* model);
 	void Update();
-	void Draw(ViewProjection& vp, const UINT tex);
+	void Draw(ViewProjection& vp, const UINT tex, const UINT tex2);
 	Vec3 GetWorldPosition();
 
 private:
@@ -27,13 +28,15 @@ private:
 	float Maxjump = 2.5;
 	int jumpCount = 0;
 
+	bool AttackF = false;
+
 	//ˆÚ“®ŒÀŠE
-	const float kMoveLimitX = 48;
-	const float kMoveLimitZ = 48;
-	const float kMoveLimitY = 25;
+	const float kMoveLimitX = 160 - 5;
+	const float kMoveLimitZ = 160 - 5;
+	const float kMoveLimitY = 20;
 
 	//ƒWƒƒƒ“ƒv,UŒ‚,‰ñ”ğ
 	void Jump();
-	void Atack();
+	void Attack();
 	void Avoidance();
 };

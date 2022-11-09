@@ -1,4 +1,13 @@
 #include "Enemy.h"
+#include <random>
+
+int GetRandom(int min, int max)
+{
+	std::random_device rd;
+	std::default_random_engine eng(rd());
+	std::uniform_int_distribution<> distr(min, max);
+	return distr(eng);
+}
 
 Enemy::~Enemy() {
 	for (int i = 0; i < enemyAttack.size(); i++)
@@ -19,6 +28,8 @@ Vec3 Enemy::GetWorldPosition() {
 
 void Enemy::Initialize(Model* model) {
 
+	key = Keys::GetInstance();
+
 	time = 0;
 
 	this->model = model;
@@ -37,33 +48,16 @@ void Enemy::Update() {
 	//スピード
 	const float speed = 0.3f;
 
-	/*if (key->IsDown(DIK_W)) {
-		transform.pos_.z += speed;
-	};
-	if (key->IsDown(DIK_S)) {
-		transform.pos_.z -= speed;
-	};
-
-	if (key->IsDown(DIK_D)) {
-		transform.pos_.x += speed;
-	};
-	if (key->IsDown(DIK_A)) {
-		transform.pos_.x -= speed;
-	};
-
-	if (key->IsDown(DIK_E)) {
-		transform.pos_.y += speed;
-	};
-	if (key->IsDown(DIK_Q)) {
-		transform.pos_.y -= speed;
-	};*/
+	if (key->IsTrigger(DIK_T)) {
+		Attack();
+	}
 
 	//ジャンプ
 	Jump();
 
 	////範囲を超えない処理
-	transform.pos_.y = max(transform.pos_.y, -kMoveLimitY);
-	transform.pos_.y = min(transform.pos_.y, +kMoveLimitY);
+	transform.pos_.y = min(transform.pos_.y, kMoveLimitY * 3);
+	transform.pos_.y = max(transform.pos_.y, +kMoveLimitY);
 	transform.pos_.x = max(transform.pos_.x, -kMoveLimitX);
 	transform.pos_.x = min(transform.pos_.x, +kMoveLimitX);
 	transform.pos_.z = max(transform.pos_.z, -kMoveLimitZ);
@@ -75,7 +69,9 @@ void Enemy::Update() {
 	for (int i = 0; i < enemyAttack.size(); i++)
 	{
 		enemyAttack[i]->Update();
+	}
 
+	for (int i = 0; i < enemyAttack.size(); i++) {
 		if (enemyAttack[i]->GetIsDied())
 		{
 			enemyAttack.erase(enemyAttack.begin() + i);
@@ -83,12 +79,12 @@ void Enemy::Update() {
 	}
 }
 
-void Enemy::Draw(ViewProjection& vp, const UINT tex,const UINT tex2) {
+void Enemy::Draw(ViewProjection& vp, const UINT tex, const UINT tex2) {
 	model->Draw(transform, vp, tex);
 
 	for (int i = 0; i < enemyAttack.size(); i++)
 	{
-		enemyAttack[i]->Draw(vp,tex2);
+		enemyAttack[i]->Draw(vp, tex2);
 	}
 }
 
@@ -120,11 +116,41 @@ void Enemy::Jump() {
 	}
 }
 
-void Enemy::Atack() {
+void Enemy::Attack() {
+
+	int a = GetRandom(0, 7);
+
+	for (int i = 0; i < 8; i++)
+	{
+		if (i == a) {
+			i++;
+			if (i > 7)
+				break;
+		}
+
 		//仮沖の中身を作る
-		EnemyAttack* newenemyAttack = new EnemyAttack(transform,model);
+		EnemyAttack* newenemyAttack = new EnemyAttack(transform.pos_, model);
+
+		newenemyAttack->transform.Initialize({});
+
+		newenemyAttack->transform.scale_ = { 20.0f,20.0f,20.0f };
+
+		Vec4 a = { 0.5f,0.0f,0.0f,1.0f };
+
+		newenemyAttack->transform.SetColor(a);
+
+		newenemyAttack->transform.pos_ = {
+			((newenemyAttack->transform.scale_.x * 2.0f) * i) - ((8 - 1) * (newenemyAttack->transform.scale_.x)) ,
+			-newenemyAttack->transform.scale_.y,
+			150 };
+
+		/*if (i == a) {
+			newenemyAttack->transform.scale_.y = 5.0f;
+		}*/
+
 		//格納
 		enemyAttack.push_back(newenemyAttack);
+	}
 }
 
 void Enemy::Avoidance() {

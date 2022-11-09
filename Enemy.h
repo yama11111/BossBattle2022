@@ -12,6 +12,7 @@ class Enemy {
 public:
 	Model* model;
 	Transform transform;
+	Keys* key;
 
 	void Initialize(Model* model);
 	void Update();
@@ -38,9 +39,9 @@ private:
 	//ˆÚ“®ŒÀŠE
 	const float kMoveLimitX = 48;
 	const float kMoveLimitZ = 48;
-	const float kMoveLimitY = 25;
+	const float kMoveLimitY = 20;
 
 	void Jump();
-	void Atack();
+	void Attack();
 	void Avoidance();
 };

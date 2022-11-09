@@ -36,7 +36,6 @@ void Game::Initialize()
 	plainTex = texM.Load(L"Resources/white.png", false);
 	playerTex = texM.Load(L"Resources/player.png", false);
 	enemyTex = texM.Load(L"Resources/enemy.png", false);
-	BlackTex = texM.Load(L"Resources/Black.png", false);
 
 	m1.reset(new Model());
 	s1.reset(new Sprite({ 64,64 }));
@@ -58,7 +57,7 @@ void Game::Initialize()
 		{
 			Transform f;
 			f.Initialize({});
-			f.scale_ = { 20,1,20 };
+			f.scale_ = { 20,20,20 };
 			f.pos_ =
 			{
 				((f.scale_.x * 2.0f) * j) - ((s - 1) * (f.scale_.x)),
@@ -71,6 +70,9 @@ void Game::Initialize()
 		}
 		floor.push_back(fs);
 	}
+
+	vp.Initialize({});
+	vp.eye_ = { 0,200.0f,-500.0f };
 }
 
 void Game::Update()
@@ -83,6 +85,8 @@ void Game::Update()
 	player.Update();
 	enemy.Update();
 
+	if(keys->IsDown(DIK_RIGHT))
+	vp.eye_.x++;
 
 	for (size_t i = 0; i < floor.size(); i++)
 	{
@@ -108,8 +112,8 @@ void Game::Draw()
 	// --------- ƒ‚ƒfƒ‹ --------- //
 
 	//m1->Draw(t2, vp, plainTex);
-	player.Draw(vp, playerTex);
-	enemy.Draw(vp, enemyTex, BlackTex);
+	player.Draw(vp, playerTex, enemyTex);
+	enemy.Draw(vp, enemyTex, plainTex);
 
 	for (size_t i = 0; i < floor.size(); i++)
 	{
