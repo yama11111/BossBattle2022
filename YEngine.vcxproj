@@ -154,6 +154,7 @@
     <ClCompile Include="DX\YAssert.cpp" />
     <ClCompile Include="DX\YDirectX.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyAttack.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="Input\Keys.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="DX\YAssert.h" />
     <ClInclude Include="DX\YDirectX.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyAttack.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Input\InputManager.h" />
     <ClInclude Include="Input\Keys.h" />

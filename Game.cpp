@@ -36,6 +36,7 @@ void Game::Initialize()
 	plainTex = texM.Load(L"Resources/white.png", false);
 	playerTex = texM.Load(L"Resources/player.png", false);
 	enemyTex = texM.Load(L"Resources/enemy.png", false);
+	BlackTex = texM.Load(L"Resources/Black.png", false);
 
 	m1.reset(new Model());
 	s1.reset(new Sprite({ 64,64 }));
@@ -77,7 +78,7 @@ void Game::Draw()
 
 	//m1->Draw(t2, vp, plainTex);
 	player.Draw(vp, playerTex);
-	enemy.Draw(vp, enemyTex);
+	enemy.Draw(vp, enemyTex, BlackTex);
 
 	// -------------------------- //
 	pplnSet2D.SetDrawCommand();

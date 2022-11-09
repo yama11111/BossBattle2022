@@ -32,6 +32,7 @@ private:
 	const float kMoveLimitZ = 48;
 	const float kMoveLimitY = 25;
 
+	//ƒWƒƒƒ“ƒv,UŒ‚,‰ñ”ğ
 	void Jump();
 	void Atack();
 	void Avoidance();

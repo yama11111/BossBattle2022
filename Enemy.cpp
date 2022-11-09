@@ -1,5 +1,12 @@
 #include "Enemy.h"
 
+Enemy::~Enemy() {
+	for (int i = 0; i < enemyAttack.size(); i++)
+	{
+		delete enemyAttack[i];
+	}
+}
+
 Vec3 Enemy::GetWorldPosition() {
 	Vec3 worldPos;
 
@@ -12,18 +19,17 @@ Vec3 Enemy::GetWorldPosition() {
 
 void Enemy::Initialize(Model* model) {
 
+	time = 0;
+
 	this->model = model;
 
 	Vec4 color = { 1.0f,1.0f,1.0f,1.0f };
 
-	//key = Keys::GetInstance();
-
 	transform.Initialize({ });
-	attack.Initialize({ });
 
 	transform.pos_.x = 10.0f;
 
-	jumpCount = 0;
+	enemyAttack.clear();
 }
 
 void Enemy::Update() {
@@ -65,10 +71,25 @@ void Enemy::Update() {
 
 	//key->Update();
 	transform.Update();
+
+	for (int i = 0; i < enemyAttack.size(); i++)
+	{
+		enemyAttack[i]->Update();
+
+		if (enemyAttack[i]->GetIsDied())
+		{
+			enemyAttack.erase(enemyAttack.begin() + i);
+		}
+	}
 }
 
-void Enemy::Draw(ViewProjection& vp, const UINT tex) {
+void Enemy::Draw(ViewProjection& vp, const UINT tex,const UINT tex2) {
 	model->Draw(transform, vp, tex);
+
+	for (int i = 0; i < enemyAttack.size(); i++)
+	{
+		enemyAttack[i]->Draw(vp,tex2);
+	}
 }
 
 void Enemy::Jump() {
@@ -100,7 +121,10 @@ void Enemy::Jump() {
 }
 
 void Enemy::Atack() {
-
+		//‰¼‰«‚Ì’†g‚ğì‚é
+		EnemyAttack* newenemyAttack = new EnemyAttack(transform,model);
+		//Ši”[
+		enemyAttack.push_back(newenemyAttack);
 }
 
 void Enemy::Avoidance() {
