@@ -59,6 +59,9 @@ public:
 	//仮エネミー
 	Enemy enemy;
 
+	// floor transform
+	std::vector<std::vector<Object::Transform>> floor;
+
 public:
 	// 初期化
 	void Initialize();

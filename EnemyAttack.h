@@ -11,7 +11,7 @@ public:
 	Transform transform;
 
 	EnemyAttack(Transform t, Model* model);
-	~EnemyAttack();
+	//~EnemyAttack();
 	void Initialize(Model* model);
 	void Update();
 	void Draw(ViewProjection& vp, const UINT tex);

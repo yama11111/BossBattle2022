@@ -49,6 +49,28 @@ void Game::Initialize()
 
 	player.Initialize(m1.get());
 	enemy.Initialize(m1.get());
+
+	const size_t s = 8;
+	for (size_t i = 0; i < s; i++)
+	{
+		std::vector<Transform> fs;
+		for (size_t j = 0; j < s; j++)
+		{
+			Transform f;
+			f.Initialize({});
+			f.scale_ = { 20,1,20 };
+			f.pos_ =
+			{
+				((f.scale_.x * 2.0f) * j) - ((s - 1) * (f.scale_.x)),
+				-f.scale_.y,
+				((f.scale_.z * 2.0f) * i) - ((s - 1) * (f.scale_.z))
+			};
+			float c = 1.0f - (((i + j) % 2 == 0) * 0.5f);
+			f.SetColor({ c,c,c,1.0f });
+			fs.push_back(f);
+		}
+		floor.push_back(fs);
+	}
 }
 
 void Game::Update()
@@ -60,6 +82,15 @@ void Game::Update()
 
 	player.Update();
 	enemy.Update();
+
+
+	for (size_t i = 0; i < floor.size(); i++)
+	{
+		for (size_t j = 0; j < floor[i].size(); j++)
+		{
+			floor[i][j].Update();
+		}
+	}
 }
 
 void Game::Draw()
@@ -79,6 +110,14 @@ void Game::Draw()
 	//m1->Draw(t2, vp, plainTex);
 	player.Draw(vp, playerTex);
 	enemy.Draw(vp, enemyTex, BlackTex);
+
+	for (size_t i = 0; i < floor.size(); i++)
+	{
+		for (size_t j = 0; j < floor[i].size(); j++)
+		{
+			m1->Draw(floor[i][j], vp, plainTex);
+		}
+	}
 
 	// -------------------------- //
 	pplnSet2D.SetDrawCommand();
