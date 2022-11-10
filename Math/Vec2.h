@@ -31,9 +31,24 @@ namespace Math
     };
 
     // “ñ€‰‰Zq
-    inline Vec2 operator+(const Vec2& v1, const Vec2& v2);
-    inline Vec2 operator-(const Vec2& v1, const Vec2& v2);
-    inline Vec2 operator*(const Vec2& v, float s);
-    inline Vec2 operator*(float s, const Vec2& v);
-    inline Vec2 operator/(const Vec2& v, float s);
+    inline Vec2 operator+(const Vec2& v1, const Vec2& v2)
+    {
+        return{ v1.x + v2.x, v1.y + v2.y };
+    }
+    inline Vec2 operator-(const Vec2& v1, const Vec2& v2)
+    {
+        return{ v1.x - v2.x, v1.y - v2.y };
+    }
+    inline Vec2 operator*(const Vec2& v, float s)
+    {
+        return{ v.x * s, v.y * s };
+    }
+    inline Vec2 operator*(float s, const Vec2& v)
+    {
+        return { s * v.x, s * v.y };
+    }
+    inline Vec2 operator/(const Vec2& v, float s)
+    {
+        return{ v.x / s, v.y / s };
+    }
 }

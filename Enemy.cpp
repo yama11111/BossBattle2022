@@ -41,6 +41,7 @@ void Enemy::Initialize(Model* model) {
 	transform.Initialize({ });
 
 	transform.pos_.x = 10.0f;
+	transform.pos_.z = 10.0f;
 
 	transform.scale_ = { 10.0f,10.0f,10.0f };
 
@@ -56,16 +57,40 @@ void Enemy::Update(Player player) {
 		Attack();
 	}
 
+	time++;
+
+	int a = 100;
+
+	if (time < 100) {
+		transform.pos_.x = a;
+		transform.pos_.z = a;
+	}
+	else if (time < 200) {
+		transform.pos_.x = -a;
+		transform.pos_.z = a;
+	}
+	else if (time < 300) {
+		transform.pos_.x = a;
+		transform.pos_.z = -a;
+	}
+	else if (time < 400) {
+		transform.pos_.x = -a;
+		transform.pos_.z = -a;
+	}
+	else {
+		time = 0;
+	}
+
 	//ƒWƒƒƒ“ƒv
 	Jump();
 
 	////”ÍˆÍ‚ð’´‚¦‚È‚¢ˆ—
-	transform.pos_.y = min(transform.pos_.y, kMoveLimitY * 3);
+	/*transform.pos_.y = min(transform.pos_.y, kMoveLimitY * 3);
 	transform.pos_.y = max(transform.pos_.y, +kMoveLimitY);
 	transform.pos_.x = max(transform.pos_.x, -kMoveLimitX);
 	transform.pos_.x = min(transform.pos_.x, +kMoveLimitX);
 	transform.pos_.z = max(transform.pos_.z, -kMoveLimitZ);
-	transform.pos_.z = min(transform.pos_.z, +kMoveLimitZ);
+	transform.pos_.z = min(transform.pos_.z, +kMoveLimitZ);*/
 
 	//key->Update();
 	transform.Update();
@@ -85,8 +110,8 @@ void Enemy::Update(Player player) {
 
 void Enemy::Draw(ViewProjection& vp, const UINT tex, const UINT tex2) {
 
-	if(IsDead != true)
-	model->Draw(transform, vp, tex);
+	if (IsDead != true)
+		model->Draw(transform, vp, tex);
 
 	for (int i = 0; i < enemyAttack.size(); i++)
 	{

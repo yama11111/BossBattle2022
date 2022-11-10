@@ -50,3 +50,9 @@ Object::ViewProjection Camera::GetViewProjection()
 
 	return result;
 }
+
+Math::Vec3 Camera::Verocity()
+{
+	Math::Vec3 vel = Math::MultVec3Mat4(Math::Vec3(0, 0, 1), trfm_.m_);
+	return vel.Normalized();
+}

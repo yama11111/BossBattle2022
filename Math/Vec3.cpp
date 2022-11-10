@@ -89,24 +89,3 @@ Vec3& Vec3::operator/=(float s)
 	z /= s;
 	return *this;
 }
-
-inline Vec3 Math::operator+(const Vec3& v1, const Vec3& v2)
-{
-	return { v1.x + v2.x, v1.y + v2.y, v1.z + v2.z };
-}
-inline Vec3 Math::operator-(const Vec3& v1, const Vec3& v2)
-{
-	return { v1.x - v2.x, v1.y - v2.y, v1.z - v2.z };
-}
-inline Vec3 Math::operator*(const Vec3& v, float s)
-{
-	return { v.x * s, v.y * s, v.z * s };
-}
-inline Vec3 Math::operator*(float s, const Vec3& v)
-{
-	return { s * v.x, s * v.y, s * v.z };
-}
-inline Vec3 Math::operator/(const Vec3& v, float s)
-{
-	return { v.x / s, v.y / s, v.z / s };
-}

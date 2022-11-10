@@ -2,6 +2,8 @@
 #include "Calc.h"
 #include "Def.h"
 #include "CircleCollision.h"
+#include "Ease.h"
+#include "Random.h"
 
 using namespace DX;
 using namespace Input;
@@ -34,6 +36,8 @@ void Game::Initialize()
 	pplnSet3D.Initialize(PipelineSet::Type::ModelT, rpM.Get());
 	// -------------------- //
 
+	Srand();
+
 	plainTex = texM.Load(L"Resources/white.png", false);
 	playerTex = texM.Load(L"Resources/player.png", false);
 	enemyTex = texM.Load(L"Resources/enemy.png", false);
@@ -49,6 +53,10 @@ void Game::Initialize()
 
 	player.Initialize(m1.get());
 	enemy.Initialize(m1.get());
+
+	heightE.Initialize(enemy.transform.scale_.y + 200, enemy.transform.scale_.y, 3.0f);
+	heightT.Initialize(100);
+	heightT.SetActive(true);
 
 	const size_t s = 8;
 	for (size_t i = 0; i < s; i++)
@@ -74,6 +82,10 @@ void Game::Initialize()
 
 	vp.Initialize({});
 	vp.eye_ = { 0,200.0f,-500.0f };
+
+	CameraManager::StaticInitialize(&player.transform, &enemy.transform);
+	cameraM.Initialize();
+	cameraM.ActStartAnimation();
 }
 
 void Game::Update()
@@ -83,15 +95,27 @@ void Game::Update()
 	t3.Update();
 	vp.Update();
 
-	player.Update();
-	enemy.Update(player);
-
-	if (CircleCollision(player.GetWorldPosition(), enemy.GetWorldPosition())) {
-		enemy.OnCollision();
+	if (keys->IsMove())
+	{
+		Vec3 velocity = { (float)keys->Horizontal(), 0, (float)keys->Vertical() };
+		//player.transform.rota_ = AdjustAngle(velocity);
 	}
 
-	if(keys->IsDown(DIK_RIGHT))
-	vp.eye_.x++;
+	//向きベクトル
+	Vec3 a = cameraM.CameraVelocity();
+
+	player.Update(a);
+
+	heightT.Update();
+	enemy.transform.pos_.y = heightE.In(heightT.Ratio());
+	enemy.Update(player);
+
+	//if (CircleCollision(player.GetWorldPosition(), enemy.GetWorldPosition())) {
+		//enemy.OnCollision();
+	//}
+
+	if (keys->IsDown(DIK_RIGHT))
+		vp.eye_.y++;
 
 	for (size_t i = 0; i < floor.size(); i++)
 	{
@@ -100,6 +124,17 @@ void Game::Update()
 			floor[i][j].Update();
 		}
 	}
+
+	if (keys->IsTrigger(DIK_1))
+	{
+		heightT.Reset(true);
+		enemy.transform.pos_.y = heightE.In(heightT.Ratio());
+		player.transform.pos_ = { 0,player.transform.scale_.y,0 };
+		cameraM.ActStartAnimation();
+	}
+
+	cameraM.Update();
+	vp = cameraM.GetViewProjection();
 }
 
 void Game::Draw()
@@ -133,6 +168,6 @@ void Game::Draw()
 	// ----- 前景スプライト ----- //
 
 	s1->Draw(t3, plainTex);
-	
+
 	// -------------------------- //
 }

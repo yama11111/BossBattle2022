@@ -118,6 +118,9 @@
       <Filter>ソースファイル\Camera</Filter>
     </ClCompile>
     <ClCompile Include="CircleCollision.cpp" />
+    <ClCompile Include="Timer.cpp">
+      <Filter>ソースファイル\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Def.h">
@@ -224,6 +227,9 @@
     </ClInclude>
     <ClInclude Include="CircleCollision.h">
       <Filter>ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>ヘッダーファイル\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

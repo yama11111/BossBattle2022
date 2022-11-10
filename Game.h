@@ -9,6 +9,7 @@
 #include <memory>
 #include "Player.h"
 #include "Enemy.h"
+#include "Camera/CameraManager.h"
 
 class Game
 {
@@ -60,6 +61,12 @@ public:
 
 	// floor transform
 	std::vector<std::vector<Object::Transform>> floor;
+
+	Math::Ease<float> heightE;
+	Math::Timer heightT;
+
+	// camera
+	CameraManager cameraM;
 
 public:
 	// ‰Šú‰»

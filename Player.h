@@ -16,6 +16,7 @@ public:
 	Keys* key;
 
 	void Initialize(Model* model);
+	void Update(Vec3 velocity);
 	void Update();
 	void Draw(ViewProjection& vp, const UINT tex, const UINT tex2);
 	Vec3 GetWorldPosition();

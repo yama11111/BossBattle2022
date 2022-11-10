@@ -8,7 +8,7 @@ Vec2::Vec2() :
 {}
 
 Vec2::Vec2(float x, float y)
-	:x(x), y(y)
+	: x(x), y(y)
 {}
 
 float Vec2::Length() const
@@ -74,25 +74,4 @@ Vec2& Vec2::operator/=(float s)
 	x /= s;
 	y /= s;
 	return *this;
-}
-
-inline Vec2 Math::operator+(const Vec2& v1, const Vec2& v2)
-{
-	return{ v1.x + v2.x, v1.y + v2.y };
-}
-inline Vec2 Math::operator-(const Vec2& v1, const Vec2& v2)
-{
-	return{ v1.x - v2.x, v1.y - v2.y };
-}
-inline Vec2 Math::operator*(const Vec2& v, float s)
-{
-	return{ v.x * s, v.y * s };
-}
-inline Vec2 Math::operator*(float s, const Vec2& v)
-{
-	return { s * v.x, s * v.y };
-}
-inline Vec2 Math::operator/(const Vec2& v, float s)
-{
-	return{ v.x / s, v.y / s };
 }

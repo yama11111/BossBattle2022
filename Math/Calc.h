@@ -47,11 +47,6 @@ namespace Math
 	// Šp“x’²®
 	Vec3 AdjustAngle(Vec3& velocity);
 
-	//float Lerp(const float a, const float b, const float t);
-
-	//Vec3 Lerp(const Vec3& v1, const Vec3& v2, float t);
-//	Vec3 Slerp(const Vec3& v1, const Vec3& v2, float t);
-
 	// F•ÏŠ·((0`255)¨(0.0`1.0))
 	Vec4 GetColor(const Vec4& color);
 
