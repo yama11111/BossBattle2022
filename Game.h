@@ -6,6 +6,7 @@
 #include "RootParameterManager.h"
 #include "Sprite.h"
 #include "Model.h"
+#include "CameraManager.h"
 #include <memory>
 #include "Player.h"
 #include "Enemy.h"
@@ -31,7 +32,9 @@ public:
 	
 	// 無地画像
 	UINT plainTex = 0;
+	// プレイヤー画像
 	UINT playerTex = 0;
+	// エネミー画像
 	UINT enemyTex = 0;
 	
 	// model
@@ -42,12 +45,18 @@ public:
 
 	// ----- オブジェクト ----- //
 
-	// Transform1
-	Object::Transform t1;
-	// Transform2
-	Object::Transform t2;
-	// Transform3
-	Object::Transform t3;
+	// player transform
+	Object::Transform player;
+	// enemy transform
+	Object::Transform enemy;
+	// floor transform
+	std::vector<std::vector<Object::Transform>> floor;
+	
+	Math::Ease<float> heightE;
+	Math::Timer heightT;
+
+	// camera
+	CameraManager cameraM;
 
 	// 転送用ビュープロジェクション
 	Object::ViewProjection vp;

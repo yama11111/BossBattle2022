@@ -29,6 +29,8 @@ public:
 public:
 	// ビュープロジェクション
 	Object::ViewProjection GetViewProjection();
+	// カメラ向き
+	Math::Vec3 Verocity();
 	// 揺れているか
 	bool IsShake() { return shake_.IsShake(); }
 };

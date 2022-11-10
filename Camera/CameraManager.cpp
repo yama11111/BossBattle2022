@@ -17,11 +17,16 @@ void CameraManager::StaticInitialize(Object::Transform* pPlayer, Object::Transfo
 void CameraManager::Initialize()
 {
 	camera_.Initialize({});
-	startEase_.Initialize({}, {}, 0, 0);
-	playEase_.Initialize({}, {}, 0, 0);
+
 	cameraWork_ = CameraWork::StartCW;
 	startAS_ = StartAnimeScene::VisitAS;
 	playM_ = PlayMovement::AdulationM;
+
+	startE_.Initialize({}, {}, 0);
+	startT_.Initialize(0);
+
+	playE_.Initialize({}, {}, 0);
+	playT_.Initialize(0);
 }
 
 void CameraManager::Shaking(const float swing, const float dekey)
@@ -33,30 +38,58 @@ void CameraManager::SetStartAnimation(const StartAnimeScene& anime)
 {
 	startAS_ = anime;
 
+	// 解説
 	if (anime == StartAnimeScene::IntroAS) { return; }
+	// 終了
+	if (anime == StartAnimeScene::EndAS) { return; }
 
+	// 着陸
 	if (anime == StartAnimeScene::VisitAS)
 	{
 		Object::Transform::Status trfmS;
-		trfmS.pos_ = { pEnemy_->pos_.x - 20.0f,10.0f,pEnemy_->pos_.z - 45.0f };
+		trfmS.pos_ =
+		{
+			pEnemy_->pos_.x - 20.0f,
+			10.0f,
+			pEnemy_->pos_.z - 45.0f
+		};
 		camera_.Initialize({trfmS});
+		//カメラワーク←開始演出
 		cameraWork_ = CameraWork::StartCW;
 	}
+	// フェードアウト
 	else if(anime == StartAnimeScene::FadeOutAS)
 	{
 		Math::Vec3 start = camera_.pos_;
-		Math::Vec3 end = { pPlayer_->pos_.x - 20.0f,10.0f,pPlayer_->pos_.z - 25.0f };
+		Math::Vec3 end = 
+		{
+			pPlayer_->pos_.x - 20.0f,
+			10.0f,
+			pPlayer_->pos_.z - 25.0f 
+		};
 		float power = 2.0f;
-		float increase = 0.01f;
-		startEase_.Initialize(start, end, power, increase);
+		startE_.Initialize(start, end, power);
+
+		int time = 100;
+		startT_.Initialize(time);
+		startT_.SetActive(true);
 	}
+	// 俯瞰
 	else if (startAS_ == StartAnimeScene::BirdEyeAS)
 	{
 		Math::Vec3 start = camera_.pos_;
-		Math::Vec3 end = { pPlayer_->pos_.x,50.0f,pPlayer_->pos_.z - 100.0f };
+		Math::Vec3 end = 
+		{
+			pPlayer_->pos_.x,
+			50.0f,
+			pPlayer_->pos_.z - 100.0f 
+		};
 		float power = 2.0f;
-		float increase = 0.01f;
-		startEase_.Initialize(start, end, power, increase);
+		startE_.Initialize(start, end, power);
+
+		int time = 100;
+		startT_.Initialize(time);
+		startT_.SetActive(true);
 	}
 }
 
@@ -81,18 +114,18 @@ void CameraManager::UpdateStartAnimation()
 	}
 	else if (startAS_ == StartAnimeScene::FadeOutAS)
 	{
-		startEase_.Update(true);
-		camera_.pos_ = startEase_.Out();
-		if (startEase_.IsEnd())
+		startT_.Update();
+		camera_.pos_ = startE_.Out(startT_.Ratio());
+		if (startT_.IsEnd())
 		{
 			SetStartAnimation(StartAnimeScene::BirdEyeAS);
 		}
 	}
 	else if (startAS_ == StartAnimeScene::BirdEyeAS)
 	{
-		startEase_.Update(true);
-		camera_.pos_ = startEase_.In();
-		if (startEase_.IsEnd())
+		startT_.Update();
+		camera_.pos_ = startE_.In(startT_.Ratio());
+		if (startT_.IsEnd())
 		{
 			SetStartAnimation(StartAnimeScene::EndAS);
 			cameraWork_ = CameraWork::PlayCW;
@@ -101,19 +134,19 @@ void CameraManager::UpdateStartAnimation()
 			v *= 1.25;
 			back -= v;
 
-			back.y *= -1;
+			Math::Vec3 back = pPlayer_->pos_ - (velocityEP_ * 100.0f);
 			back.y += 25;
 
-
-			playEase_.Initialize(camera_.pos_, back, 2.0f, 0.05f);
-
+			playE_.Initialize(camera_.pos_, back, 2.0f);
+			playT_.Initialize(20);
+			playT_.SetActive(true);
 		}
 	}
 }
 
 void CameraManager::PlayMovementUpdate()
 {
-	float length = vel.Length();
+	//float length = velocityEP_.Length();
 
 	if (true)
 	{
@@ -130,23 +163,10 @@ void CameraManager::PlayMovementUpdate()
 		if (elderPlayerPos_.x != pPlayer_->pos_.x ||
 			elderPlayerPos_.z != pPlayer_->pos_.z)
 		{
-			Math::Vec3 back = pPlayer_->pos_;
-			Math::Vec3 v = vel;
-			v *= 1.25;
-			back -= v;
-
-			back.y *= -1;
+			Math::Vec3 back = pPlayer_->pos_ - (velocityEP_ * 100.0f);
 			back.y += 25;
 
-			if (playEase_.IsEnd())
-			{
-				//playEase_.Initialize(camera_.pos_, back, 2.0f, 0.05f);
-				playEase_.SetEnd(back);
-			}
-			else
-			{
-				playEase_.SetEnd(back);
-			}
+			playE_.Initialize(camera_.pos_, back, 2.0f);
 		}
 
 	}
@@ -157,17 +177,14 @@ void CameraManager::PlayMovementUpdate()
 
 	elderPlayerPos_ = pPlayer_->pos_;
 
-	playEase_.Update(true);
-
-	camera_.pos_ = playEase_.In();
-
+	playT_.Update();
+	camera_.pos_ = playE_.In(playT_.Ratio());
 }
 
 void CameraManager::Update()
 {
-	vel = pEnemy_->pos_;
-	vel -= pPlayer_->pos_;
-	vel.Normalized();
+	velocityEP_ = pEnemy_->pos_ - pPlayer_->pos_;
+	velocityEP_ = velocityEP_.Normalized();
 
 	if (cameraWork_ == CameraWork::StartCW)
 	{
@@ -178,9 +195,8 @@ void CameraManager::Update()
 		PlayMovementUpdate();
 	}
 
-	Math::Vec3 velocity = pEnemy_->pos_;
-	velocity -= camera_.pos_;
-	camera_.rota_ = Math::AdjustAngle(velocity);
+	Math::Vec3 velocityEC = pEnemy_->pos_ - camera_.pos_;
+	camera_.rota_ = Math::AdjustAngle(velocityEC);
 
 	camera_.Update();
 }
@@ -188,4 +204,9 @@ void CameraManager::Update()
 Object::ViewProjection CameraManager::GetViewProjection()
 {
 	return camera_.GetViewProjection();
+}
+
+Math::Vec3 CameraManager::CameraVelocity()
+{
+	return camera_.Verocity();
 }

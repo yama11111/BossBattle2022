@@ -1,18 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <FxCompile Include="Resources\Shaders\ModelPS.hlsl">
-      <Filter>シェーダーファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\SpritePS.hlsl">
-      <Filter>シェーダーファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\SpriteVS.hlsl">
-      <Filter>シェーダーファイル</Filter>
-    </FxCompile>
-    <FxCompile Include="Resources\Shaders\ModelVS.hlsl">
-      <Filter>シェーダーファイル</Filter>
-    </FxCompile>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル\Model用">
+      <UniqueIdentifier>{d01d2884-6688-4003-b438-eba874cef5f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル\Sprite用">
+      <UniqueIdentifier>{624c73ed-8d9c-41b8-b975-672f5fd10eee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Input">
+      <UniqueIdentifier>{7b3e2857-56b2-48e0-83b0-d4e7380dc3a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Input">
+      <UniqueIdentifier>{26584a69-3aa4-473d-a320-a4bc84da9203}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\DX">
+      <UniqueIdentifier>{33fb1464-6389-4435-9fd3-b3f97894f19c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\DX">
+      <UniqueIdentifier>{7b6a00c8-611a-4fae-b889-2f22a46654ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Math">
+      <UniqueIdentifier>{97323698-597a-4745-91c4-3bf4ef5441c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Math">
+      <UniqueIdentifier>{a5dd05ca-6984-4848-b971-6c1d277d883e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Object">
+      <UniqueIdentifier>{dfe96a20-54a4-457f-9dde-51ab4662136f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Object\2D">
+      <UniqueIdentifier>{ed070bde-3726-4245-9b66-38441ac89e65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Object\3D">
+      <UniqueIdentifier>{75c68552-5c2c-4977-ab5c-4647cbdefa60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object">
+      <UniqueIdentifier>{ca459bd6-b3b5-4610-9aeb-17ba60c918c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\2D">
+      <UniqueIdentifier>{e2ae0920-baaf-44b5-af23-c03975007531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Object\3D">
+      <UniqueIdentifier>{cc53a894-e477-400e-82e1-5aea749c9514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Camera">
+      <UniqueIdentifier>{6ae8e72b-b199-4782-b71c-9c2afb343246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Camera">
+      <UniqueIdentifier>{39cb7f7f-7f80-4bb0-ae42-ed7727c3a99f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -108,14 +156,29 @@
     <ClCompile Include="Math\Random.cpp">
       <Filter>ソースファイル\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Math\Shake.cpp">
-      <Filter>ソースファイル\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera\Camera.cpp">
-      <Filter>ソースファイル\Camera</Filter>
+    <ClCompile Include="Math\Mat4.cpp">
+      <Filter>ソース ファイル\Math</Filter>
     </ClCompile>
     <ClCompile Include="Camera\CameraManager.cpp">
       <Filter>ソースファイル\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Ease.cpp">
+      <Filter>ソース ファイル\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Shake.cpp">
+      <Filter>ソース ファイル\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\Camera.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Random.cpp">
+      <Filter>ソース ファイル\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\CameraManager.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Timer.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,17 +272,29 @@
     <ClInclude Include="Math\Ease.h">
       <Filter>ヘッダーファイル\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Math\Random.h">
-      <Filter>ヘッダーファイル\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\Shake.h">
-      <Filter>ヘッダーファイル\Math</Filter>
+    <ClInclude Include="Math\Mat4.h">
+      <Filter>ヘッダー ファイル\Math</Filter>
     </ClInclude>
     <ClInclude Include="Camera\Camera.h">
       <Filter>ヘッダーファイル\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="Camera\Camera.h">
+      <Filter>ヘッダー ファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Shake.h">
+      <Filter>ヘッダー ファイル\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Ease.h">
+      <Filter>ヘッダー ファイル\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Random.h">
+      <Filter>ヘッダー ファイル\Math</Filter>
+    </ClInclude>
     <ClInclude Include="Camera\CameraManager.h">
-      <Filter>ヘッダーファイル\Camera</Filter>
+      <Filter>ヘッダー ファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Timer.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
