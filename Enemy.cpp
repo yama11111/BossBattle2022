@@ -28,6 +28,8 @@ Vec3 Enemy::GetWorldPosition() {
 
 void Enemy::Initialize(Model* model) {
 
+	IsDead = false;
+
 	key = Keys::GetInstance();
 
 	time = 0;
@@ -40,10 +42,12 @@ void Enemy::Initialize(Model* model) {
 
 	transform.pos_.x = 10.0f;
 
+	transform.scale_ = { 10.0f,10.0f,10.0f };
+
 	enemyAttack.clear();
 }
 
-void Enemy::Update() {
+void Enemy::Update(Player player) {
 
 	//スピード
 	const float speed = 0.3f;
@@ -68,7 +72,7 @@ void Enemy::Update() {
 
 	for (int i = 0; i < enemyAttack.size(); i++)
 	{
-		enemyAttack[i]->Update();
+		enemyAttack[i]->Update(player);
 	}
 
 	for (int i = 0; i < enemyAttack.size(); i++) {
@@ -80,6 +84,8 @@ void Enemy::Update() {
 }
 
 void Enemy::Draw(ViewProjection& vp, const UINT tex, const UINT tex2) {
+
+	if(IsDead != true)
 	model->Draw(transform, vp, tex);
 
 	for (int i = 0; i < enemyAttack.size(); i++)

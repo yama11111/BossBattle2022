@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="Camera\CameraManager.cpp" />
+    <ClCompile Include="CircleCollision.cpp" />
     <ClCompile Include="DX\ConstBufferManager.cpp" />
     <ClCompile Include="DX\GPUResource.cpp" />
     <ClCompile Include="DX\PipelineSet.cpp" />
@@ -181,6 +182,7 @@
   <ItemGroup>
     <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="Camera\CameraManager.h" />
+    <ClInclude Include="CircleCollision.h" />
     <ClInclude Include="Def.h" />
     <ClInclude Include="DX\ConstBufferManager.h" />
     <ClInclude Include="DX\GPUResource.h" />

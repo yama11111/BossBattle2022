@@ -117,6 +117,7 @@
     <ClCompile Include="Camera\CameraManager.cpp">
       <Filter>ソースファイル\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="CircleCollision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Def.h">
@@ -220,6 +221,9 @@
     </ClInclude>
     <ClInclude Include="Camera\CameraManager.h">
       <Filter>ヘッダーファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleCollision.h">
+      <Filter>ヘッダーファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

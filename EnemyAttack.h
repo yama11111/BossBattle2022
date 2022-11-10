@@ -1,5 +1,6 @@
 #pragma once
 #include "Model.h"
+#include "Player.h"
 
 using namespace DX;
 using namespace Math;
@@ -13,7 +14,7 @@ public:
 	EnemyAttack(Vec3 t, Model* model);
 	//~EnemyAttack();
 	void Initialize(Model* model);
-	void Update();
+	void Update(Player player);
 	void Draw(ViewProjection& vp, const UINT tex);
 	Vec3 GetWorldPosition();
 	bool GetIsDied() { return IsDead; };

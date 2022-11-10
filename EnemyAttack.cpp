@@ -1,4 +1,5 @@
 #include "EnemyAttack.h"
+#include "CircleCollision.h"
 
 EnemyAttack::EnemyAttack(Vec3 t, Model* model) {
 
@@ -26,24 +27,28 @@ void EnemyAttack::Initialize(Model* model) {
 	transform.Initialize({ });
 }
 
-void EnemyAttack::Update() {
+void EnemyAttack::Update(Player player) {
 
 	if (transform.pos_.y < 20) {
 		transform.pos_.y++;
-	}else {
+	}
+	else {
 		transform.pos_.z -= speed;
 	}
 
 	speed += 0.05f;
 
 	const float ti = 1.0f;
-	if(transform.pos_.z < -160)
+	if (transform.pos_.z < -160)
 		transform.scale_ -= {ti, ti, ti};
 
 	if (transform.scale_.x < 0.1f)
 		IsDead = true;
 
-	transform.Update();
+	if (CircleCollision(player.GetWorldPosition(), transform.pos_, player.transform.scale_.x, transform.scale_.x))
+		IsDead = true;
+
+		transform.Update();
 }
 
 void EnemyAttack::Draw(ViewProjection& vp, const UINT tex) {

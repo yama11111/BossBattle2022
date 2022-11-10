@@ -2,6 +2,7 @@
 #include "Model.h"
 #include "Keys.h"
 #include "EnemyAttack.h"
+#include "Player.h"
 
 using namespace DX;
 using namespace Input;
@@ -15,9 +16,13 @@ public:
 	Keys* key;
 
 	void Initialize(Model* model);
-	void Update();
+	void Update(Player player);
 	void Draw(ViewProjection& vp, const UINT tex, const UINT tex2);
 	Vec3 GetWorldPosition();
+
+	bool IsDead = false;
+	bool GetIsDead() { return IsDead; };
+	void OnCollision() { IsDead = true; };
 
 	~Enemy();
 

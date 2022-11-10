@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Calc.h"
 #include "Def.h"
+#include "CircleCollision.h"
 
 using namespace DX;
 using namespace Input;
@@ -83,7 +84,11 @@ void Game::Update()
 	vp.Update();
 
 	player.Update();
-	enemy.Update();
+	enemy.Update(player);
+
+	if (CircleCollision(player.GetWorldPosition(), enemy.GetWorldPosition())) {
+		enemy.OnCollision();
+	}
 
 	if(keys->IsDown(DIK_RIGHT))
 	vp.eye_.x++;
