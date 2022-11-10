@@ -35,6 +35,9 @@ public:
 	// エネミー画像
 	UINT enemyTex = 0;
 	
+	UINT starTex = 0;
+	UINT warnTex = 0;
+
 	// model
 	std::unique_ptr<Object::Model> m1 = nullptr;
 	
@@ -49,9 +52,22 @@ public:
 	Object::Transform enemy;
 	// floor transform
 	std::vector<std::vector<Object::Transform>> floor;
-	
+
 	Math::Ease<float> heightE;
 	Math::Timer heightT;
+
+	Math::Ease<Math::Vec3> specialE;
+	Math::Timer specialT;
+
+	bool isAttack = false;
+	bool isAttack2 = false;
+	bool a = false;
+	Object::Transform star;
+	Object::Transform warn;
+	Math::Ease<float> scaleE;
+	Math::Timer scaleT;
+
+	int tt = 0;
 
 	// camera
 	CameraManager cameraM;

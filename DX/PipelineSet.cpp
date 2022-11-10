@@ -202,6 +202,8 @@ void PipelineSet::Initialize(const Type& type, std::vector<D3D12_ROOT_PARAMETER>
 	state->pplnDesc_.RasterizerState.FillMode = D3D12_FILL_MODE_SOLID; // ポリゴン内塗りつぶし
 	state->pplnDesc_.RasterizerState.DepthClipEnable = true; // 深度クリッピングを有効に
 
+	state->pplnDesc_.BlendState.AlphaToCoverageEnable = true;
+
 	// ブレンドステート
 	D3D12_RENDER_TARGET_BLEND_DESC& blendDesc = state->pplnDesc_.BlendState.RenderTarget[0];
 	blendDesc.RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL; // RBGA全てのチャンネルを描画

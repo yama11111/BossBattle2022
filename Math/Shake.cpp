@@ -35,9 +35,9 @@ void Shake::Update()
 	// ”ÍˆÍ“à‚Ì—”¶¬
 	if (isShake_) 
 	{
-		value_.x = GetRandF(-swingValue_, swingValue_, 4);
-		value_.y = GetRandF(-swingValue_, swingValue_, 4);
-		value_.z = GetRandF(-swingValue_, swingValue_, 4);
+		value_.x = GetRand(-swingValue_, swingValue_);
+		value_.y = GetRand(-swingValue_, swingValue_);
+		value_.z = GetRand(-swingValue_, swingValue_);
 	}
 
 	if (swingValue_ <= 0) 
